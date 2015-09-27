@@ -129,6 +129,10 @@ var helpers = {
         blockContent = lines.slice(1, -1).join('');
 
     target = target || 'replace';
+    
+    if (attbs.indexOf('data-use-cdn') !== -1 && process.env.USEREF_CDN_BASE_URL) {
+        target = process.env.USEREF_CDN_BASE_URL + target.split('public')[1];
+    }
 
     if (type === 'css') {
 
